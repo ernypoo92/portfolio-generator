@@ -136,17 +136,7 @@ const promptProject = portfolioData => {
         })
 };
 
-promptUser()
-    .then(promptProject)
-    .then(portfolioData => {
-        const pageHTML = generatePage();
 
-fs.writeFile('./index.html', pageHTML, err => {
-  if (err) throw new Error(err);
-
-  console.log('Page created! Check out index.html in this directory to see it!');
-});
-});
 
 const mockData = {
     name: 'Lernantino',
@@ -194,12 +184,17 @@ const mockData = {
     ]
 };
 
-const pageHTML = generatePage(mockData);
+promptUser()
+    .then(promptProject)
+    .then(portfolioData => {
+        const pageHTML = generatePage(portfolioData);
+    // .then (mockData => {
+    //     const pageHTML = generatePage(mockData);
 
-// const pageHTML = generatePage(name, github);
+fs.writeFile('./index.html', pageHTML, err => {
+  if (err) throw new Error(err);
 
-// fs.writeFile('./index.html', pageHTML, err => {
-//     if (err) throw err;
+  console.log('Page created! Check out index.html in this directory to see it!');
+});
+});
 
-//     console.log('Portfolio complete! Check out index.html to see the output!');
-// });
